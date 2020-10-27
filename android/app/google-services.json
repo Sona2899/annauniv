@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "47050353731",
+    "firebase_url": "https://chatapp-ecbbb.firebaseio.com",
+    "project_id": "chatapp-ecbbb",
+    "storage_bucket": "chatapp-ecbbb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:47050353731:android:65cb1539d75fc0b1ab78f6",
+        "android_client_info": {
+          "package_name": "com.example.my_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "47050353731-06k014chobn9n78tv82pl8eadrleu4ru.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVV0rVghCiUPZHfrY7WGA30J4IP6DK_3w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "47050353731-06k014chobn9n78tv82pl8eadrleu4ru.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
