@@ -14,17 +14,19 @@ class GpaViewModel extends BaseViewModel {
   String dropdownSemester = 'semester-1';
   String _title = 'Home View';
   String get title => '$_title';
+  bool isBusy;
 
   int selectedIndex;
 
-  List<String> _regulation = ['Regulation-2013'];
+  List<String> _regulation = [];
   List<String> get regulation => _regulation;
-  List<String> _department = ['IT'];
+  List<String> _department = [];
   List<String> get department => _department;
-  List<String> _semester = ['semester-1'];
+  List<String> _semester = [];
   List<String> get semester => _semester;
 
   Future _onPressed() async {
+    isBusy = true;
     await firestoreInstance
         .collection("cgpa")
         .doc('Wj3DWsiuLNGhEO3BQO7I')
@@ -35,6 +37,7 @@ class GpaViewModel extends BaseViewModel {
       _semester = List.from(value.data()['semester']);
     });
     notifyListeners();
+    isBusy = false;
   }
 
   void initialize() {

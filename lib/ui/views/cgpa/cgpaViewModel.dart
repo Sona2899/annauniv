@@ -14,6 +14,7 @@ class CgpaViewModel extends BaseViewModel {
   String dropdownSemester = 'semester-1';
   String _title = 'Home View';
   String get title => '$_title';
+  bool isBusy = false;
 
   int selectedIndex;
 
@@ -25,6 +26,7 @@ class CgpaViewModel extends BaseViewModel {
   List<String> get semester => _semester;
 
   Future _onPressed() async {
+    isBusy = true;
     await firestoreInstance
         .collection("cgpa")
         .doc('Wj3DWsiuLNGhEO3BQO7I')
@@ -34,7 +36,9 @@ class CgpaViewModel extends BaseViewModel {
       _department = List.from(value.data()['department']);
       _semester = List.from(value.data()['semester']);
     });
+
     notifyListeners();
+    isBusy = false;
   }
 
   void initialize() {

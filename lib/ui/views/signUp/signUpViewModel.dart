@@ -21,10 +21,6 @@ class SignUpViewModel extends BaseViewModel {
     isLoading = false;
   }
 
-  Future navigateToHome() async {
-    await _navigationService.navigateTo(Routes.homeViewRoute);
-  }
-
   signUp() {
     if (formKey.currentState.validate()) {
       isLoading = true;
@@ -33,7 +29,8 @@ class SignUpViewModel extends BaseViewModel {
         .signUpWithEmailAndPasssword(userNameTextEditingControllerR.text,
             passwordTextEditingControllerR.text)
         .then((e) async {
-      if (e != null) await _navigationService.navigateTo(Routes.homeViewRoute);
+      if (e != null)
+        await _navigationService.navigateTo(Routes.bottomNavViewRoute);
       print("$e");
     });
   }

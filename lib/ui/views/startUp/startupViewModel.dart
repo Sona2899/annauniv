@@ -8,16 +8,21 @@ import 'package:stacked_services/stacked_services.dart';
 enum AuthStatus { notSignedIn, signIn }
 
 class StartupViewModel extends BaseViewModel {
+  final SnackbarService _snackbarService = locator<SnackbarService>();
+
   final formKey1 = GlobalKey<FormState>();
   AuthMethods authMethods = new AuthMethods();
   TextEditingController userNameTextEditingController =
       new TextEditingController();
   TextEditingController passwordTextEditingController =
       new TextEditingController();
-  bool isLoading = false;
+  bool isBusy = false;
+  double height = 40;
   final NavigationService _navigationService = locator<NavigationService>();
   void initialize() {
+    height = 30;
     super.initialised;
+    notifyListeners();
   }
 
   Future navigateToSignUp() async {
@@ -25,17 +30,33 @@ class StartupViewModel extends BaseViewModel {
   }
 
   signIn() async {
+    height = 30;
+    notifyListeners();
     if (formKey1.currentState.validate()) {
-      isLoading = true;
+      isBusy = true;
+      notifyListeners();
     }
-    authMethods
+    isBusy = false;
+    notifyListeners();
+    await authMethods
         .signInWithEmailAndPasssword(userNameTextEditingController.text,
             passwordTextEditingController.text)
         .then((e) async {
-      if (e != null)
+      if (e != null) {
+        _snackbarService.showSnackbar(
+          message: '',
+          title: 'Login Sucessfully',
+          duration: Duration(seconds: 2),
+          onTap: (_) {
+            print('snackbar tapped');
+          },
+          mainButtonTitle: 'Undo',
+          onMainButtonTapped: () => print('Undo the action!'),
+        );
         await _navigationService.clearStackAndShow(Routes.bottomNavViewRoute);
-
-      print("$e");
+      }
     });
+    height = 40;
+    notifyListeners();
   }
 }

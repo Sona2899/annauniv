@@ -16,48 +16,54 @@ class SignUpView extends StatelessWidget {
             ? Center(
                 child: CircularProgressIndicator(),
               )
-            : Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: Form(
-                  key: model.formKey,
-                  child: Column(
-                    children: [
-                      TextFormField(
-                        validator: (val) {
-                          return val.isEmpty || val.length < 4
-                              ? "UserName length is too small "
-                              : null;
-                        },
-                        controller: model.userNameTextEditingControllerR,
-                        decoration: InputDecoration(hintText: 'UserName'),
+            : SingleChildScrollView(
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height,
+                  child: Container(
+                    decoration: BoxDecoration(color: Colors.black12),
+                    padding: EdgeInsets.symmetric(horizontal: 80, vertical: 80),
+                    child: Form(
+                      key: model.formKey,
+                      child: Column(
+                        children: [
+                          TextFormField(
+                            validator: (val) {
+                              return val.isEmpty || val.length < 4
+                                  ? "UserName length is too small "
+                                  : null;
+                            },
+                            controller: model.userNameTextEditingControllerR,
+                            decoration: InputDecoration(hintText: 'UserName'),
+                          ),
+                          TextFormField(
+                            obscureText: true,
+                            validator: (val) {
+                              return val.isEmpty || val.length < 4
+                                  ? "Password length is too small "
+                                  : null;
+                            },
+                            controller: model.passwordTextEditingControllerR,
+                            decoration: InputDecoration(hintText: 'Password'),
+                          ),
+                          SizedBox(
+                            height: 100,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              model.signUp();
+                            },
+                            child: Container(
+                              child: Center(child: Text('SignUp')),
+                              height: 30,
+                              width: 100,
+                              decoration: BoxDecoration(
+                                  color: Colors.blue,
+                                  borderRadius: BorderRadius.circular(12)),
+                            ),
+                          )
+                        ],
                       ),
-                      TextFormField(
-                        obscureText: true,
-                        validator: (val) {
-                          return val.isEmpty || val.length < 4
-                              ? "Password length is too small "
-                              : null;
-                        },
-                        controller: model.passwordTextEditingControllerR,
-                        decoration: InputDecoration(hintText: 'Password'),
-                      ),
-                      SizedBox(
-                        height: 100,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          model.signUp();
-                        },
-                        child: Container(
-                          child: Center(child: Text('SignUp')),
-                          height: 30,
-                          width: 100,
-                          decoration: BoxDecoration(
-                              color: Colors.blue,
-                              borderRadius: BorderRadius.circular(12)),
-                        ),
-                      )
-                    ],
+                    ),
                   ),
                 ),
               ),

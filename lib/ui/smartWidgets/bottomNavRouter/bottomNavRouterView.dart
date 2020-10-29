@@ -20,12 +20,6 @@ class BottomNavRouterView extends StatelessWidget {
           onTap: model.setIndex,
           items: [
             BottomNavigationBarItem(
-              label: 'CGPA',
-              icon: Icon(
-                Icons.calculate,
-              ),
-            ),
-            BottomNavigationBarItem(
               activeIcon: Container(
                 child: Icon(
                   Icons.home_outlined,
@@ -38,6 +32,12 @@ class BottomNavRouterView extends StatelessWidget {
             ),
             BottomNavigationBarItem(
               label: 'GPA',
+              icon: Icon(
+                Icons.calculate,
+              ),
+            ),
+            BottomNavigationBarItem(
+              label: 'CGPA',
               icon: Icon(
                 Icons.calculate_outlined,
               ),
@@ -52,11 +52,11 @@ class BottomNavRouterView extends StatelessWidget {
   Widget getViewForIndex(int index) {
     switch (index) {
       case 0:
-        return CgpaView();
-      case 1:
         return HomeView();
-      default:
+      case 1:
         return GpaView();
+      default:
+        return CgpaView();
     }
   }
 }
