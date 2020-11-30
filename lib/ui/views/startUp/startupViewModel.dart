@@ -33,10 +33,9 @@ class StartupViewModel extends BaseViewModel {
     height = 30;
     notifyListeners();
     if (formKey1.currentState.validate()) {
-      isBusy = true;
       notifyListeners();
     }
-    isBusy = false;
+
     notifyListeners();
     await authMethods
         .signInWithEmailAndPasssword(userNameTextEditingController.text,

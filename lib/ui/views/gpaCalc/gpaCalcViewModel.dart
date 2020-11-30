@@ -24,8 +24,7 @@ class GpaCalcViewModel extends BaseViewModel {
   String dropdownValue;
   var cgpaDocumentSelectedReg;
   var map2;
-  var t1;
-  Future _onPressed() async {
+  Future _onexplain() async {
     isBusy = true;
     notifyListeners();
     await firestoreInstance
@@ -36,9 +35,7 @@ class GpaCalcViewModel extends BaseViewModel {
       cgpaDocumentSelectedReg =
           Map.from(value.data()[_userSelectionService.selectedRegulation]);
     });
-    print('hello');
     map2 = Map.from(cgpaDocumentSelectedReg['Grade']);
-
     _sub = List.from(
         cgpaDocumentSelectedReg[_userSelectionService.selectedDepartment]
             [_userSelectionService.selectedSemester]);
@@ -72,64 +69,12 @@ class GpaCalcViewModel extends BaseViewModel {
       map2.forEach((k, v) => {
             if (k == element) valueForGrade.add(v),
           });
+      // if (valueForGrade[i] != 0) {
       creditTotal = creditTotal + credits[i];
       s = s + (valueForGrade[i] * credits[i]);
+      // }
       i = i + 1;
     });
-    //
-    // for (var i = 0; i < valueForGrade.length; i = i + 1) {
-    //   if (valueForGrade[i] != 0) {
-    //     creditTotal = creditTotal + credits[i];
-    //     s = s + (valueForGrade[i] * credits[i]);
-    //
-    //     print(credits[i]);
-    //   }
-    // }
-
-    // if (_userSelectionService.selectedRegulation == 'Regulation-2013')
-    //   dropdowndefault.forEach((element) {
-    //     if (element == 'S') {
-    //       valueForGrade.add(10);
-    //     } else if (element == 'A') {
-    //       valueForGrade.add(9);
-    //     } else if (element == 'B') {
-    //       valueForGrade.add(8);
-    //     } else if (element == 'C') {
-    //       valueForGrade.add(7);
-    //     } else if (element == 'D') {
-    //       valueForGrade.add(6);
-    //     } else if (element == 'E') {
-    //       valueForGrade.add(5);
-    //     } else {
-    //       valueForGrade.add(0);
-    //     }
-    //     if (element != 'U') {
-    //       creditTotal = creditTotal + credits[i];
-    //       s = s + (valueForGrade[i] * credits[i]);
-    //     }
-    //     i = i + 1;
-    //   });
-    // if (_userSelectionService.selectedRegulation == 'Regulation-2017')
-    //   dropdowndefault.forEach((element) {
-    //     if (element == 'O') {
-    //       valueForGrade.add(10);
-    //     } else if (element == 'A+') {
-    //       valueForGrade.add(9);
-    //     } else if (element == 'A') {
-    //       valueForGrade.add(8);
-    //     } else if (element == 'B+') {
-    //       valueForGrade.add(7);
-    //     } else if (element == 'B') {
-    //       valueForGrade.add(6);
-    //     } else {
-    //       valueForGrade.add(0);
-    //     }
-    //     // if (element != 'RA') {
-    //     creditTotal = creditTotal + credits[i];
-    //     s = s + (valueForGrade[i] * credits[i]);
-    //     //  }
-    //     i = i + 1;
-    //   });
     _ans = s / creditTotal;
     _ans = double.parse((_ans).toStringAsFixed(3));
     notifyListeners();
@@ -137,7 +82,7 @@ class GpaCalcViewModel extends BaseViewModel {
 
   void initialize() {
     isBusy = true;
-    _onPressed();
+    _onexplain();
     isBusy = false;
   }
 }

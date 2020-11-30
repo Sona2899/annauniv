@@ -32,20 +32,15 @@ class HomeView extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  Lottie.network(
-                      'https://assets7.lottiefiles.com/private_files/lf30_TBKozE.json'),
+                  Lottie.asset('assets/lottie/readingworld1.json'),
                   Center(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Lottie.network(
-                            'https://assets7.lottiefiles.com/packages/lf20_phzkCc/03 - Back.json',
-                            height: 100,
-                            width: 100),
-                        Lottie.network(
-                            'https://assets3.lottiefiles.com/private_files/lf30_1TcivY.json',
-                            height: 100,
-                            width: 100),
+                        Lottie.asset('assets/lottie/arrowLeft.json',
+                            height: 100, width: 100),
+                        Lottie.network('assets/lottie/welcome.json',
+                            height: 100, width: 100),
                         Lottie.network(
                             'https://assets7.lottiefiles.com/packages/lf20_O3WEx3/02 - Forward.json',
                             height: 100,
